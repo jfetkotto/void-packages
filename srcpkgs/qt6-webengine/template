@@ -1,6 +1,6 @@
 # Template file for 'qt6-webengine'
 pkgname=qt6-webengine
-version=6.5.0
+version=6.6.0
 revision=2
 build_style=cmake
 configure_args="
@@ -10,6 +10,7 @@ configure_args="
  -DQT_FEATURE_webengine_system_icu=ON
  -DQT_FEATURE_webengine_webrtc_pipewire=ON
  -DQT_FEATURE_webengine_embedded_build=OFF
+ -DQT_FEATURE_webengine_proprietary_codecs=ON
  -DQT_FEATURE_pdf_v8=ON
  -DNinja_EXECUTABLE=$XBPS_WRAPPERDIR/ninja
  -DQT_BUILD_EXAMPLES=ON"
@@ -32,7 +33,11 @@ maintainer="John <me@johnnynator.dev>"
 license="GPL-3.0-only, GPL-2.0-only, LGPL-3.0-only, BSD-3-Clause"
 homepage="https://www.qt.io"
 distfiles="https://download.qt.io/official_releases/qt/${version%.*}/${version}/submodules/qtwebengine-everywhere-src-${version}.tar.xz"
-checksum=2a10da34a71b307e9ff11ec086455dd20b83d5b0ee6bda499c4ba9221e306f07
+checksum=d5dc9ff05a2c57adbf99cbf0c7cb6f19527f67216caf627b0cc160a1d253b780
+
+case "$XBPS_TARGET_MACHINE" in
+	riscv64*) broken="Patchset needs updating";;
+esac
 
 if [ "$XBPS_LIBC" = "musl" ]; then
 	hostmakedepends+=" musl-legacy-compat"
@@ -127,6 +132,14 @@ _wrap_ninja() {
 }
 
 pre_configure() {
+	rm src/3rdparty/chromium/third_party/six/src/six.py
+	rm src/3rdparty/chromium/third_party/catapult/third_party/six/six.py
+	rm src/3rdparty/chromium/third_party/wpt_tools/wpt/tools/third_party/six/six.py
+
+	ln -s ${py3_sitelib}/six.py src/3rdparty/chromium/third_party/six/src/six.py
+	ln -s ${py3_sitelib}/six.py src/3rdparty/chromium/third_party/catapult/third_party/six/six.py
+	ln -s ${py3_sitelib}/six.py src/3rdparty/chromium/third_party/wpt_tools/wpt/tools/third_party/six/six.py
+
 	_bootstrap_gn
 	# _unbundle_libs
 	_wrap_ninja

@@ -1,6 +1,6 @@
 # Template file for 'rust-bootstrap'
 pkgname=rust-bootstrap
-version=1.70.0
+version=1.73.0
 revision=1
 short_desc="Rust programming language bootstrap toolchain"
 maintainer="Orphaned <orphan@voidlinux.org>"
@@ -31,24 +31,24 @@ case "$XBPS_TARGET_MACHINE" in
 		 ${_bootstrap_url}/rustc-${version}-i686-unknown-linux-gnu.tar.xz
 		 ${_bootstrap_url}/rust-std-${version}-i686-unknown-linux-gnu.tar.xz"
 		checksum="
-		 f89c90f80864f68e42b70d9c14984195629ed9894bb5cfe6c8a0f1140f7816ff
-		 0e5543c35196ca5b08f1b7e49fa3f3b671444d75648504cdbcfd854e2e7efd2d"
+		 3d98a27c50ae79de7c7956506d649e169312e76b4fc2314a975b45ebd1dea5b9
+		 c46936bf3c921c90593b6ea77a08b1ec8b240c8184b287fd89fea636ac437b25"
 		;;
 	x86_64)
 		distfiles="
 		 ${_bootstrap_url}/rustc-${version}-x86_64-unknown-linux-gnu.tar.xz
 		 ${_bootstrap_url}/rust-std-${version}-x86_64-unknown-linux-gnu.tar.xz"
 		checksum="
-		 7d891d3e9bc4f1151545c83cbe3bc6af9ed234388c45ca2e19641262f48615e2
-		 0c0129717da1e27ccf2c56da950d2fe56973f71beec9e80ae6904b282d2f0ee9"
+		 14f383eb4d6e65ce01cc99f2c5cf5a78744239f29704f72fe84f11095af779f5
+		 96efb163a57b400152c357be0ea3a0dd902b56cc0df662b9ac951403c7c7b15b"
 		;;
 	x86_64-musl)
 		distfiles="
 		 ${_bootstrap_url}/rustc-${version}-x86_64-unknown-linux-musl.tar.xz
 		 ${_bootstrap_url}/rust-std-${version}-x86_64-unknown-linux-musl.tar.xz"
 		checksum="
-		 69a3ba1273aedaf7aadc91f6ccf59061eb00205c9c523f0b1f91ca14cfa2058c
-		 7ebaba08385d1ec87d0a27ca8b4e1eb454374da18ffa12621bd1578973754101"
+		 e885398a10f5f4697dfb2b4e399bf9a0805ee8c11b9f9365ba4d803fef34d779
+		 c89f5164edffbda4a21212c1e74260021634bda43fbe6d5e4fe9f7e85a79320c"
 		;;
 	# placeholders for user-supplied distfiles
 	ppc64le)

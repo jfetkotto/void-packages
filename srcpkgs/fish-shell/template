@@ -1,7 +1,7 @@
 # Template file for 'fish-shell'
 pkgname=fish-shell
 version=3.6.1
-revision=1
+revision=2
 build_style=cmake
 hostmakedepends="gettext"
 makedepends="ncurses-devel pcre2-devel"
@@ -16,10 +16,6 @@ checksum=55402bb47ca6739d8aba25e41780905b5ce1bce0a5e0dd17dca908b5bc0b49b2
 register_shell="/bin/fish /usr/bin/fish"
 # tests don't work as root
 make_check=ci-skip
-
-if [ "$XBPS_TARGET_NO_ATOMIC8" ]; then
-	makedepends+=" libatomic-devel"
-fi
 
 post_install() {
 	# Starting with fish-3.0.0 this is a skeleton file with only comments
